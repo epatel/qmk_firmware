@@ -35,8 +35,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         "7", // 7
         "8", // 8
         "9", // 9
-        "10", // 10
-        "11", // 11
+        "", // 10 - ctrl-c
+        "", // 11 - esc
         "", // 12 - yes/no
         "", // 13 - timer between
         "", // 14 - timer pressed
@@ -80,6 +80,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     } else {
                         send_string("no\n");
                     }
+                } else if (c == 11) {
+                    tap_code(KC_ESC);
+                } else if (c == 10) {
+                    tap_code16(LCTL(KC_C));
                 } else {
                     send_string(output[c]);
                 }
